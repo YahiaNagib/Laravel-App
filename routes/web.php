@@ -22,3 +22,5 @@ Route::get('posts', [App\Http\Controllers\PostController::class, 'index']);
 Route::get('posts/{id}', [App\Http\Controllers\PostController::class, 'show']);
 
 Route::get('/home', [App\Http\Controllers\ProfilesContoller::class, 'index'])->name('home');
+Route::get('/profile/{id}', [App\Http\Controllers\ProfilesContoller::class, 'profile'])->name('profile');
+
