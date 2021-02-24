@@ -2,6 +2,16 @@
 
 @section('content')
 <div class="container">
-    <h1> Hello World! {{ $name ?? '' }} </h1>
+    @if(isset($user))
+    <h1> Hello World! {{ $user->name ?? '' }} </h1>
+        @foreach($user->posts as $post)
+            <div class="post">
+                <h2> {{$post->description}} </h2>
+            </div>
+        @endforeach
+
+    @else 
+        <h1> Invalid Id </h1>
+    @endif
 </div>
 @endsection

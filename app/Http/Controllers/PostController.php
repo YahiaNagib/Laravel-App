@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Auth;
 
 class PostController extends Controller
 {
@@ -12,12 +13,18 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $posts = Post::all();
-        return response()->json([
-            'posts' => $posts
-        ], 200);
+        return view('post', [
+            'posts'=>$posts
+        ]);
     }
 
     /**
@@ -27,7 +34,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -38,7 +45,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = Auth::user()->id;
+        $data = $request->validate([
+            'name' => 'required',
+            'description' => 'required'
+        ]);
+
+        // dd($id);
+
+        $data["user_id"] = $id;
+
+        Post::create($data);
+
+        return redirect("profile/" . $id);
     }
 
     /**

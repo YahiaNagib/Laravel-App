@@ -17,7 +17,7 @@ class ProfilesContoller extends Controller
     {
         $user = User::find($id);
         return view('home', [
-            'name' => $user->name
+            'user'=> $user
         ]);
     }
 }
