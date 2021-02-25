@@ -66,18 +66,19 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::find($id);
-        if (!$post){
-            return response()->json([
-                'message' => 'Post Not Found'
-            ], 404);
-        }
+        return view('posts.show', compact('post'));
+        // $post = Post::find($id);
+        // if (!$post){
+        //     return response()->json([
+        //         'message' => 'Post Not Found'
+        //     ], 404);
+        // }
 
-        return response()->json([
-            'post' => $post
-        ], 200);
+        // return response()->json([
+        //     'post' => $post
+        // ], 200);
     }
 
     /**
@@ -86,9 +87,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.edit', compact('post'));
     }
 
     /**

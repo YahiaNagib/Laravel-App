@@ -10944,4 +10944,15 @@ a.text-dark:focus {
   }
 }
 
+.post {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.post a {
+  text-decoration: none;
+  color: black;
+}
+
 
